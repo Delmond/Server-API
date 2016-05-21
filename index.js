@@ -31,7 +31,22 @@ connection.query('SELECT * FROM Users;',function(err,rows,fields){
 		console.log("Greska");
 
 });
+app.get("/register",function(req, res){
 
+var username = req.param('username');
+var password = req.param('password');
+var email = req.param('email');
 
+conneciton.query("INSERT INTO Users (username,password,email) VALUES (username,password,email);",
+function(error, rows, field){
+
+if(!error){
+	console.log("Sve uspjelo");
+	console.log(rows);
+}else{
+	console.log("Greska pri ubaciavanju!");
+
+}
 });
+);
 app.listen(3000);
