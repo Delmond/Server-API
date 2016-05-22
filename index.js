@@ -64,7 +64,7 @@ app.get("/register",function(req, res){
 app.get("/login", function(req, res){
 	var username = req.query.username;
 	var password = req.query.password;
-	connection.query("SELECT EXISTS(SELECT * FROM Users WHERE username="+username +	" AND password=" + password+");",
+	connection.query("SELECT count(*) as count FROM Users WHERE username="+username +	" AND password=" + password+";",
 	 	function(error, rows, field){
 			if(!error){
 				console.log("Uspjesan Login");
