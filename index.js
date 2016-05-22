@@ -46,8 +46,9 @@ app.get("/register",function(req, res){
 	} else {
 		console.log("/register good");
 		console.log(username, password,email);
-		connection.query("INSERT INTO Users (username,password,email,registrationdate) VALUES ("+username+","+ password+","
-		+ email + ",NOW());",
+		var data = {username:username,password:password,email:email,registrationdate:new Date()};
+		console.log(data);
+		connection.query("INSERT INTO Users SET ?", data,
 	function(error, rows, field){
 		if(!error){
 			console.log("Sve uspjelo");
