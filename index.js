@@ -53,8 +53,9 @@ app.get("/register",function(req, res){
 			console.log(rows);
 			res.status(200).send();
 		}else{
+			console.log(error);
 			console.log("Greska pri ubaciavanju!");
-
+			console.log(rows);
 			res.status(400).send();
 		}
 	});
