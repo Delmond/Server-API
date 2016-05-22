@@ -55,7 +55,7 @@ app.get("/register",function(req, res){
 		}else{
 			console.log(error);
 			console.log("Greska pri ubaciavanju!");
-			console.log(rows);
+			//console.log(rows);
 			res.status(400).send();
 		}
 	});
@@ -70,7 +70,9 @@ app.get("/login", function(req, res){
 				console.log("Uspjesan Login");
 				console.log(rows);
 				res.status(200).send("Login Succesful!");
-			}else{
+			}else{		
+				console.log(error);
+				console.log(rows);
 				res.status(400).send("Login Unsuccesful!");
 			}
 
