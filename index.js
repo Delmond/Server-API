@@ -54,6 +54,7 @@ app.get("/register",function(req, res){
 			res.status(200).send();
 		}else{
 			console.log("Greska pri ubaciavanju!");
+
 			res.status(400).send();
 		}
 	});
