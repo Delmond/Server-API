@@ -25,12 +25,13 @@ if(!err){
 app.get("/", function(req,res){
 
 connection.query('SELECT * FROM Users;',function(err,rows,fields){
-	if(!err)
+	if(!err){
 		console.log(rows);
-		res.status(200).send(rows);
-	else
+		res.status(200).send(rows);}
+	else{
 		console.log("Greska");
 		res.status(400).send(rows);
+}
 
 });
 });
