@@ -67,15 +67,40 @@ app.get("/login", function(req, res){
 	connection.query("SELECT count(*) as count FROM Users WHERE username='"+username +	"' AND password='" + password+"';",
 	 	function(error, rows, field){
 			if(!error){
-				console.log("Uspjesan Login");
 				console.log(rows);
+				if(rows['count'] == 1) {
+				console.log("Uspjesan Login");
 				res.status(200).send("Login Succesful!");
-			}else{		
+			}else {
+				console.log("Username or/and password don't match!");
+				res.status(100).send("Username or/and password don't match!");
+			}
+			}else{
 				console.log(error);
 				console.log(rows);
-				res.status(400).send("Login Unsuccesful!");
+				res.status(400).send("Error, bad request!");
 			}
 
 	});
+});
+app.get("/search",function(req, res){
+		var querry = req.query.q;
+		if(q!=null){
+			connection.query("SELECT * FROM Users WHERE username LIKE '"+ q + "%';", function(error, rows, field){
+				if(!error){
+						if(rows.length != 0){
+							res.status(200).send(rows);
+							console.log(rows);
+					}	else{
+						res.status(100).send("No users found!");
+						console.log(error);
+					}
+				}else{
+					res.status(400).send("Error, bad request!");
+				}
+			});
+} else {
+	console.log("querry string nije definisan");
+}
 });
 app.listen(3000);
