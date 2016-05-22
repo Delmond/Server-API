@@ -27,26 +27,34 @@ app.get("/", function(req,res){
 connection.query('SELECT * FROM Users;',function(err,rows,fields){
 	if(!err)
 		console.log(rows);
-	else 
+		res.status(200).send(rows);
+	else
 		console.log("Greska");
+		res.status(400).send(rows);
 
+});
 });
 app.get("/register",function(req, res){
 
-var username = req.param('username');
-var password = req.param('password');
-var email = req.param('email');
-
-conneciton.query("INSERT INTO Users (username,password,email) VALUES (username,password,email);",
+var username = req.query.username;
+var password = req.query.password;
+var email = req.query.email;
+if(username == null || password == null || email== null){
+	console.log("/register with incorrect parametars called!");
+	console.log(username, password,email);
+	res.status(400).send();
+} else {
+	console.log("/register good");
+	conneciton.query("INSERT INTO Users (username,password,email) VALUES (username,password,email);",
 function(error, rows, field){
-
-if(!error){
-	console.log("Sve uspjelo");
-	console.log(rows);
-}else{
-	console.log("Greska pri ubaciavanju!");
-
+	if(!error){
+		console.log("Sve uspjelo");
+		console.log(rows);
+		res.status(200).send();
+	}else{
+		console.log("Greska pri ubaciavanju!");
+	}
+});
 }
 });
-);
 app.listen(3000);
