@@ -85,8 +85,8 @@ app.get("/login", function(req, res){
 });
 app.get("/search",function(req, res){
 		var querry = req.query.q;
-		if(q!=null){
-			connection.query("SELECT * FROM Users WHERE username LIKE '"+ q + "%';", function(error, rows, field){
+		if(querry!=null){
+			connection.query("SELECT * FROM Users WHERE username LIKE '"+ querry + "%';", function(error, rows, field){
 				if(!error){
 						if(rows.length != 0){
 							res.status(200).send(rows);
