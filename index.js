@@ -66,21 +66,21 @@ app.get("/register",function(req, res){
 app.get("/login", function(req, res){
 	var username = req.query.username;
 	var password = req.query.password;
-	connection.query("SELECT count(*) as count FROM Users WHERE username='"+username +	"' AND password='" + password+"';",
+	connection.query("SELECT * FROM Users WHERE username='"+username + "' AND password='" + password+"';",
 	 	function(error, rows, field){
+			res.set('Content-Type', 'application/json');
 			if(!error){
 				console.log(rows);
-				if(rows['count'] == 1) {
+				if(rows && rows.length == 1) {
 				console.log("Uspjesan Login");
-				res.status(200).send("Login Succesful!");
+				res.status(200).json(rows[0]);
 			}else {
 				console.log("Username or/and password don't match!");
-				res.status(100).send("Username or/and password don't match!");
+				res.status(403).json({error:'Username or/and password dont match'});
 			}
 			}else{
 				console.log(error);
-				console.log(rows);
-				res.status(400).send("Error, bad request!");
+				res.status(500).json({error:"Problem with Server!"});
 			}
 
 	});
