@@ -2,7 +2,7 @@ express = require("express");
 mysql = require('mysql');
 http = require('http');
 nodemailer = require('nodemailer');
-mailgun = require('nodemailer-mailgun-transport');
+smtp = require('nodemailer-smtp-transport');
 
 connection = mysql.createConnection({
 	host	 : 'localhost',
@@ -28,7 +28,7 @@ var gmailData = {
 		pass: 'muhamed95'
 	}
 };
-var transporter = nodemailer.createTransport(smtpTransport( gmailData));
+var transporter = nodemailer.createTransport(smtp( gmailData));
 var app = express();
 connection.connect(function(err){
 		if(!err){
