@@ -24,8 +24,8 @@ var gmailData = {
 	secureConnection : false,
 	port: 587,	
 	auth:{
-		user: 'muha.delalic@gmail.com',
-		pass: 'muhamed95'
+		user: 'muhamed.dela@gmail.com',
+		pass: 'hilerskihrast2'
 	}
 };
 var transporter = nodemailer.createTransport(smtp( gmailData));
