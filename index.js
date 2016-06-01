@@ -124,6 +124,7 @@ app.get("/search",function(req, res){
 	console.log("querry string nije definisan");
 }
 });
+/*
 app.get("/like", function(req, res){
 		var id = req.query.id;
 		var collection_id = req.query.collection_id;
@@ -161,5 +162,5 @@ app.get("/follow",function(req, res){
 	var friend_id = req.query.friend_id;
 
 });
-
+*/
 app.listen(3000);
