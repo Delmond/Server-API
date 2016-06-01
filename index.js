@@ -124,4 +124,42 @@ app.get("/search",function(req, res){
 	console.log("querry string nije definisan");
 }
 });
+app.get("/like", function(req, res){
+		var id = req.query.id;
+		var collection_id = req.query.collection_id;
+		if (id == null || collection_id == null){
+			res.status(400).send("Error, bad request!");
+		} else {
+			connection.query("INSERT INTO Likes SET? ", {author_id:id, collection_id:collection_id}, function(error,rows,field){
+				if(error){
+					res.status(400).{"Error inserting!"};
+				}{
+					res.status(200).send("Liked Succesfuly!")
+				}
+			});
+		}
+});
+
+app.get("/unlike", function(req, res){
+	var id = req.query.id;
+	var collection_id = req.query.collection_id;
+	if (id == null || collection_id == null){
+		res.status(400).send("Error, bad request!");
+	} else {
+		connection.query("DELETE FROM Likes SET? ", {author_id:id, collection_id:collection_id}, function(error,rows,field){
+			if(error){
+				res.status(400).{"Error inserting!"};
+			}{
+				res.status(200).send("Unliked Succesfuly!")
+			}
+		});
+	}
+});
+
+app.get("/follow",function(req, res){
+	var id = req.query.id;
+	var friend_id = req.query.friend_id;
+
+});
+
 app.listen(3000);
