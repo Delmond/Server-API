@@ -28,7 +28,7 @@ var gmailData = {
 		pass: 'muhamed95'
 	}
 };
-var transporter = nodemailer.createTransport('SMTP', gmailData);
+var transporter = nodemailer.createTransport(smtpTransport( gmailData));
 var app = express();
 connection.connect(function(err){
 		if(!err){
