@@ -13,7 +13,7 @@ connection = mysql.createConnection({
 
 emailData = {
 	auth:{
-	api_key: 'key-df0d8b38f4495a1d63547e3c2ddb217',
+	api_key: 'key-df0d8b38f4495a1d63547e3c32ddb217',
 	domain: 'sandboxcae2ee050ed3490f813806cb71b98e9a.mailgun.org'
 	}
 };
