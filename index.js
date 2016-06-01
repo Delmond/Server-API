@@ -20,7 +20,9 @@ emailData = {
 var transport = nodemailer.createTransport(mailgun(emailData));
 */
 var gmailData = {
-	service: 'gmail',
+	host : "smtp.gmail.com",
+	secureConnection : false,
+	port: 587,	
 	auth:{
 		user: 'muha.delalic@gmail.com',
 		pass: 'muhamed95'
