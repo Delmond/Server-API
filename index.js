@@ -23,7 +23,7 @@ var gmailData = {
 	service: 'gmail',
 	auth:{
 		user: 'muha.delalic@gmail.com',
-		pass 'muhamed95'
+		pass: 'muhamed95'
 	}
 };
 var transporter = nodemailer.createTransport('SMTP', gmailData);
