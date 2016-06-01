@@ -78,7 +78,7 @@ app.get("/register",function(req, res){
 				text: 'Ukoliko imate bilo kakvih dodatnih pitanja, zadrzite ih za sebe.'
 				
 			};
-			transport.sendMail(emailData, function(err,info) {
+			transporter.sendMail(emailData, function(err,info) {
 				if(err){ console.log('Error od nodemailer-a: ' + err);  }
 				else {console.log('Odgovor od nodemailer-a:' + info);}
 			});
