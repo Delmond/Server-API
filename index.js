@@ -10,7 +10,7 @@ connection = mysql.createConnection({
 	password : 'control',
 	database : 'ShemDB'
 });
-
+/*
 emailData = {
 	auth:{
 	api_key: 'key-df0d8b38f4495a1d63547e3c32ddb217',
@@ -18,6 +18,15 @@ emailData = {
 	}
 };
 var transport = nodemailer.createTransport(mailgun(emailData));
+*/
+var gmailData = {
+	service: 'gmail',
+	auth:{
+		user: 'muha.delalic@gmail.com',
+		pass 'muhamed95'
+	}
+};
+var transporter = nodemailer.createTransport('SMTP', gmailData);
 var app = express();
 connection.connect(function(err){
 		if(!err){
@@ -63,7 +72,7 @@ app.get("/register",function(req, res){
 			console.log(rows);
 			res.status(200).send();
 			var emailData = {
-				from: 'postmaster@sandboxcae2ee050ed3490f813806cb71b98e9a.mailgun.org',
+				from: 'Muhamed Delalic <muha.delalic@gmail.com>',
 				to: email,
 				subject: 'Dobrodosao na Shem, jedan od prvih si!',
 				text: 'Ukoliko imate bilo kakvih dodatnih pitanja, zadrzite ih za sebe.'
