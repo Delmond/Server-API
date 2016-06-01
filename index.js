@@ -1,7 +1,8 @@
 express = require("express");
 mysql = require('mysql');
 http = require('http');
-
+nodemailer = require('nodemailer');
+mailgun = require('nodemailer-mailgun-transport');
 
 connection = mysql.createConnection({
 	host	 : 'localhost',
@@ -10,6 +11,13 @@ connection = mysql.createConnection({
 	database : 'ShemDB'
 });
 
+emailData = {
+	auth:{
+	api_key: 'key-df0d8b38f4495a1d63547e3c2ddb217',
+	domain: 'sandboxcae2ee050ed3490f813806cb71b98e9a.mailgun.org'
+	}
+};
+var transport = nodemailer.createTransport(mailgun(emailData));
 var app = express();
 connection.connect(function(err){
 		if(!err){
@@ -54,6 +62,17 @@ app.get("/register",function(req, res){
 			console.log("Sve uspjelo");
 			console.log(rows);
 			res.status(200).send();
+			var emailData = {
+				from: 'postmaster@sandboxcae2ee050ed3490f813806cb71b98e9a.mailgun.org',
+				to: email,
+				subject: 'Dobrodosao na Shem, jedan od prvih si!',
+				text: 'Ukoliko imate bilo kakvih dodatnih pitanja, zadrzite ih za sebe.'
+				
+			};
+			transport.sendMail(emailData, function(err,info) {
+				if(err){ console.log('Error od nodemailer-a: ' + err);  }
+				else {console.log('Odgovor od nodemailer-a:' + info);}
+			});
 		}else{
 			console.log(error);
 			console.log("Greska pri ubaciavanju!");
