@@ -132,7 +132,7 @@ app.get("/mycollections", function(req, res) {
 			
 		}
 
-		connection.query("SELECT name AS collection_name, description, visibility AS visible FROM Collections WHERE author_id=" + ID +" ORDER BY creationdate DESC",
+		connection.query("SELECT id, name AS collection_name, description, visibility AS visible FROM Collections WHERE author_id=" + ID +" ORDER BY creationdate DESC",
 		function(error, rows, field){
 			if(error) { 
 				res.status(500).json({});
@@ -150,23 +150,23 @@ app.get("/mycollections", function(req, res) {
 });
 
 
-/*
+
 app.get("/like", function(req, res){
 		var id = req.query.id;
 		var collection_id = req.query.collection_id;
 		if (id == null || collection_id == null){
-			res.status(400).send("Error, bad request!");
+			res.status(400).json({});
 		} else {
 			connection.query("INSERT INTO Likes SET? ", {author_id:id, collection_id:collection_id}, function(error,rows,field){
 				if(error){
-					res.status(400).{"Error inserting!"};
-				}{
-					res.status(200).send("Liked Succesfuly!")
+					res.status(500).json({error:"Error inserting!"});
+				}else{
+					res.status(200).json({});
 				}
 			});
 		}
 });
-
+/*
 app.get("/unlike", function(req, res){
 	var id = req.query.id;
 	var collection_id = req.query.collection_id;
