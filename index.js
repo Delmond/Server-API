@@ -4,7 +4,15 @@ http = require('http');
 nodemailer = require('nodemailer');
 smtp = require('nodemailer-smtp-transport');
 connectionData = require('./connectionData.json');
-gmailData = require('./gmailData.json');
+gmailData = {		
+ -	host : "smtp.gmail.com",		
+ -	secureConnection : false,		
+ -	port: 587,			
+ -	auth:{		
+ -		user: 'muhamed.dela@gmail.com',		
+ -		pass: 'hilerskihrast2'		
+ -	}		
+ -};
 
 connection = mysql.createConnection();
 
