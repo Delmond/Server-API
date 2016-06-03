@@ -125,7 +125,11 @@ app.get("/search",function(req, res){
 });
 app.get("/mycollections", functions(req, res) {
 		var ID = req.query.ID;
-		if(ID == null) { res.status(400).json({}); return;}
+		if(ID == null) {
+			res.status(400).json({});
+			return;
+			
+		}
 
 		connection.query("SELECT * FROM Collections WHERE author_id=" + ID +" ORDER BY creationdate DESC",
 		function(error, rows, field){
@@ -133,8 +137,10 @@ app.get("/mycollections", functions(req, res) {
 				res.status(500).json({});
 				console.log(error);
 				return;
-			}	
-});			console.log(rows);
+			}
+				res.status(200).json(rows);
+				console.log(rows);
+});		
 		
 
 
