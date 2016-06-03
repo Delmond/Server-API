@@ -3,13 +3,8 @@ mysql = require('mysql');
 http = require('http');
 nodemailer = require('nodemailer');
 smtp = require('nodemailer-smtp-transport');
-
-connection = mysql.createConnection({
-	host	 : 'localhost',
-	user	 : 'master',
-	password : 'control',
-	database : 'ShemDB'
-});
+connectionData = require('./connectionData.json');
+connection = mysql.createConnection();
 /*
 var gmailData = {
 	host : "smtp.gmail.com",
