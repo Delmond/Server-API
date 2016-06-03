@@ -14,7 +14,7 @@ gmailData = {
  	}		
 };
 
-connection = mysql.createConnection();
+connection = mysql.createConnection(connectionData);
 
 var transporter = nodemailer.createTransport(smtp( gmailData));
 var app = express();
@@ -123,7 +123,8 @@ app.get("/search",function(req, res){
 	console.log("querry string nije definisan");
 }
 });
-app.get("/mycollections", functions(req, res) {
+
+app.get("/mycollections", function(req, res) {
 		var ID = req.query.ID;
 		if(ID == null) {
 			res.status(400).json({});
@@ -131,7 +132,7 @@ app.get("/mycollections", functions(req, res) {
 			
 		}
 
-		connection.query("SELECT * FROM Collections WHERE author_id=" + ID +" ORDER BY creationdate DESC",
+		connection.query("SELECT * FROM Collections WHERE author_id=" + ID +" ORDER BY creationdate DESC;",
 		function(error, rows, field){
 			if(error) { 
 				res.status(500).json({});
@@ -145,7 +146,6 @@ app.get("/mycollections", functions(req, res) {
 
 
 });
-
 
 
 /*

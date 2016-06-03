@@ -1,0 +1,28 @@
+{
+  "name": "webserver",
+  "version": "1.0.0",
+  "description": "For OOAD project.",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mysql": "^2.10.2",
+    "nodemailer": "^2.4.2",
+    "http": "^0.0.0",
+    "nodemailer-smtp-transport": "^2.5.0",
+    "nodemailer-mailgun-transport": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Delmond/Server-API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Delmond/Server-API/issues"
+  },
+  "homepage": "https://github.com/Delmond/Server-API#readme"
+}
