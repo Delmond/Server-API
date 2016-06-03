@@ -84,7 +84,7 @@ app.get("/register",function(req, res){
 app.get("/login", function(req, res){
 	var username = req.query.username;
 	var password = req.query.password;
-	connection.query("SELECT * FROM Users WHERE username='"+username + "' AND password='" + password+"';",
+	connection.query("SELECT id,username,email FROM Users WHERE username='"+username + "' AND password='" + password+"';",
 	 	function(error, rows, field){
 			res.set('Content-Type', 'application/json');
 			if(!error){
@@ -132,7 +132,7 @@ app.get("/mycollections", function(req, res) {
 			
 		}
 
-		connection.query("SELECT * FROM Collections WHERE author_id=" + ID +" ORDER BY creationdate DESC;",
+		connection.query("SELECT name AS collection_name, description, visibility AS visible FROM Collections WHERE author_id=" + ID +" ORDER BY creationdate DESC",
 		function(error, rows, field){
 			if(error) { 
 				res.status(500).json({});
@@ -140,7 +140,9 @@ app.get("/mycollections", function(req, res) {
 				return;
 			}
 				res.status(200).json(rows);
-				console.log(rows);
+				if(rows[0].visible == 1) rows[0].visible = true;
+				else rows[0].visible = false;
+				console.log(rows[0]);
 });		
 		
 
