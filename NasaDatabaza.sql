@@ -26,14 +26,13 @@ CREATE TABLE `Collections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `author_id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `description` text,
   `visibility` tinyint(1) NOT NULL,
-  `authorName` varchar(50) NOT NULL,
-  `authorPicture` longblob,
-  `creationdate` date NOT NULL,
+  `creationdate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `author_id` (`author_id`),
+  UNIQUE KEY `UniqueName` (`author_id`,`name`),
   CONSTRAINT `Collections_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `Users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +41,7 @@ CREATE TABLE `Collections` (
 
 LOCK TABLES `Collections` WRITE;
 /*!40000 ALTER TABLE `Collections` DISABLE KEYS */;
+INSERT INTO `Collections` VALUES (1,10,'Moja Prva Kolekcija',NULL,1,'2016-06-02 00:00:00');
 /*!40000 ALTER TABLE `Collections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,8 +138,10 @@ CREATE TABLE `Users` (
   `EMAIL` varchar(50) NOT NULL,
   `PASSWORD` varchar(50) NOT NULL,
   `REGISTRATIONDATE` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniquename` (`USERNAME`),
+  UNIQUE KEY `uniqueemail` (`EMAIL`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +150,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES (10,'Muhamed Delalic','muha.delalic@gmail.com','hexor','2016-05-22'),(11,'Sheila Becirevic','seila.becirevic@gmail.com','fallenangel','2016-05-22'),(12,'Edin Ceric','edin.ceric@gmail.com','louisvangall','2016-05-22');
+INSERT INTO `Users` VALUES (10,'Muhamed Delalic','muha.delalic@gmail.com','hexor','2016-05-22'),(11,'Sheila Becirevic','seila.becirevic@gmail.com','fallenangel','2016-05-22'),(12,'Edin Ceric','edin.ceric@gmail.com','louisvangall','2016-05-22'),(30,'Rijad Muminovic','rijad95@gmail.com','rijad95','2016-06-01');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -161,4 +163,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-05-29 19:46:08
+-- Dump completed on 2016-06-04 14:13:07
