@@ -27,7 +27,7 @@ connection.connect(function(err){
 });
 
 
-app.get("/", function(req,res){
+app.get("/AllUsers", function(req,res){
 		connection.query('SELECT * FROM Users;',function(err,rows,fields){
 				if(!err){
 						console.log(rows);
@@ -124,8 +124,8 @@ app.get("/search",function(req, res){
 }
 });
 
-app.get("/mycollections", function(req, res) {
-		var ID = req.query.ID;
+app.get("/UserCollections", function(req, res) {
+		var ID = req.query.id;
 		if(ID == null) {
 			res.status(400).json({});
 			return;
