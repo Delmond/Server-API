@@ -225,11 +225,27 @@ app.get("/unlike", function(req, res){
 		});
 	}
 });
-
+*/
 app.get("/follow",function(req, res){
 	var id = req.query.id;
 	var friend_id = req.query.friend_id;
+	if(id == null || friend_id== null) {
+		res.status(400).json({});
+		console.log("Ne valja id ili fiend_id");
+		return;
+	}
+	connection.query("INSERT INTO Follow SET?", {user_id:id,following_id:friend_id},
+	function(error,rows,field){
+	if(error){
+		res.status(400).json({});
+		console.log("Vec ste follow-ali tog usera");
+		return;
+	}
+	res.status(200).json({});
+	console.log("Uspjesno followan");
+	return;
+	});
 
 });
-*/
+
 app.listen(3000);
