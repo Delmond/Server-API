@@ -3,6 +3,7 @@ mysql = require('mysql');
 http = require('http');
 nodemailer = require('nodemailer');
 smtp = require('nodemailer-smtp-transport');
+bodyParser = require('body-parser');
 connectionData = require('./connectionData.json');
 gmailData = {		
  	host : "smtp.gmail.com",		
@@ -26,7 +27,7 @@ connection.connect(function(err){
 		}
 });
 
-app.use(express.bodyParser());
+app.use(bodyParser());
 app.get("/AllUsers", function(req,res){
 		connection.query('SELECT * FROM Users;',function(err,rows,fields){
 				if(!err){
