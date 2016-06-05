@@ -149,7 +149,41 @@ app.get("/UserCollections", function(req, res) {
 
 });
 
+app.get("/AddBook",function(req, res) {
 
+
+    if(id == null ) {
+      res.status(400).json({});
+      console.log("id is null");
+      return;
+    }
+    var collection_id = req.body.author_id;
+    var name = req.body.name;
+    var image = req.body.image;
+    var author = req.body.author;
+    var publisher = req.body.publisher;
+    var synopsys = req.body.synopsys;
+    connection.query("INSERT INTO Article SET?",
+    {
+      collection_id:collection_id,
+      name:name,
+      image:image,
+      author:author,
+      publisher:publisher,
+      synopsys:synopsys
+    },
+    function(error,rows,field){
+      if(error) {
+        res.status(500).json({});
+        console.log("error after inserting");
+        return;
+      }
+      res.status(200).json({});
+    }
+    );
+
+
+});
 
 app.get("/like", function(req, res){
 		var id = req.query.id;
