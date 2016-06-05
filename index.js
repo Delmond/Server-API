@@ -152,17 +152,17 @@ app.get("/UserCollections", function(req, res) {
 app.get("/AddBook",function(req, res) {
 	console.log('AddBook called');
 
-    if(id == null ) {
-      res.status(400).json({});
-      console.log("id is null");
-      return;
-    }
     var collection_id = req.body.collection_id;
     var name = req.body.name;
     var image = req.body.image;
     var author = req.body.author;
     var publisher = req.body.publisher;
     var synopsys = req.body.synopsys;
+    if(collection_id == null ) {
+      res.status(400).json({});
+      console.log("id is null");
+      return;
+    }
     connection.query("INSERT INTO Article SET?",
     {
       collection_id:collection_id,
