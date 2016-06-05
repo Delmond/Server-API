@@ -3,7 +3,7 @@ mysql = require('mysql');
 http = require('http');
 nodemailer = require('nodemailer');
 smtp = require('nodemailer-smtp-transport');
-bodyParser = require('body-parser');
+//bodyParser = require('body-parser');
 connectionData = require('./connectionData.json');
 gmailData = {		
  	host : "smtp.gmail.com",		
@@ -27,7 +27,7 @@ connection.connect(function(err){
 		}
 });
 
-app.use(bodyParser());
+//app.use(bodyParser());
 app.get("/AllUsers", function(req,res){
 		connection.query('SELECT * FROM Users;',function(err,rows,fields){
 				if(!err){
@@ -158,14 +158,14 @@ app.get("/UserCollections", function(req, res) {
 });
 
 app.get("/AddBook",function(req, res) {
-	console.log('AddBook called');
-	console.log(req.body);
-    var collection_id = req.body.collection_id;
-    var name = req.body.name;
-    var image = req.body.image;
-    var author = req.body.author;
-    var publisher = req.body.publisher;
-    var synopsys = req.body.synopsys;
+   console.log('AddBook called');
+//	console.log(req.body);
+    var collection_id = req.query.collection_id;
+    var name = req.query.name;
+    var image = req.query.image;
+    var author = req.query.author;
+    var publisher = req.query.publisher;
+    var synopsys = req.query.synopsys;
     if(collection_id == null ) {
       res.status(400).json({});
       console.log("id is null");
