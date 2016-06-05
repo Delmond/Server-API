@@ -151,7 +151,7 @@ app.get("/UserCollections", function(req, res) {
 
 app.get("/AddBook",function(req, res) {
 	console.log('AddBook called');
-
+	console.log(req.body);
     var collection_id = req.body.collection_id;
     var name = req.body.name;
     var image = req.body.image;
