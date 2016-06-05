@@ -150,7 +150,7 @@ app.get("/UserCollections", function(req, res) {
 });
 
 app.get("/AddBook",function(req, res) {
-
+	console.log('AddBook called');
 
     if(id == null ) {
       res.status(400).json({});
