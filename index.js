@@ -247,5 +247,25 @@ app.get("/follow",function(req, res){
 	});
 
 });
+app.get("/newsfeed",function(req, res){
+	var id = req.query.id;
+	if(id == null){
+		res.status(400).json({});
+		console.log("Ne valja id!");
+		return;
+	}
+	connection.query("SELECT * FROM Collections WHERE author_id IN (SELECT following_id FROM Follow WHERE user_id="+ id +") ORDER BY creationdate DESC;",
+	function(error, rows, field){
+	if(error){
+		res.status(400).json({});
+		console.log("Greska nakon quertija!");
+		return;
+	}
+	res.status(200).json(rows);
+	console.log("news feed for user",id);
+	return;
+		
+	});
+});
 
 app.listen(3000);
