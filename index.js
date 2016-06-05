@@ -200,6 +200,7 @@ app.get("/like", function(req, res){
 		if (id == null || collection_id == null){
 			res.status(400).json({});
 			console.log("invalid parameters");
+			return;
 		}
 		res.status(400).json({});
 		connection.query("INSERT INTO Likes SET? ", {user_id:id, collection_id:collection_id}, function(error,rows,field){
