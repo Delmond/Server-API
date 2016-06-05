@@ -157,7 +157,7 @@ app.get("/AddBook",function(req, res) {
       console.log("id is null");
       return;
     }
-    var collection_id = req.body.author_id;
+    var collection_id = req.body.collection_id;
     var name = req.body.name;
     var image = req.body.image;
     var author = req.body.author;
@@ -167,6 +167,7 @@ app.get("/AddBook",function(req, res) {
     {
       collection_id:collection_id,
       name:name,
+      type:'Book',
       image:image,
       author:author,
       publisher:publisher,
