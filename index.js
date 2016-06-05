@@ -26,7 +26,7 @@ connection.connect(function(err){
 		}
 });
 
-
+app.use(express.bodyParser());
 app.get("/AllUsers", function(req,res){
 		connection.query('SELECT * FROM Users;',function(err,rows,fields){
 				if(!err){
