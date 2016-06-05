@@ -199,15 +199,17 @@ app.get("/like", function(req, res){
 		var collection_id = req.query.collection_id;
 		if (id == null || collection_id == null){
 			res.status(400).json({});
-		} else {
-			connection.query("INSERT INTO Likes SET? ", {author_id:id, collection_id:collection_id}, function(error,rows,field){
-				if(error){
-					res.status(500).json({error:"Error inserting!"});
-				}else{
-					res.status(200).json({});
-				}
-			});
+			console.log("invalid parameters");
 		}
+		res.status(400).json({});
+		connection.query("INSERT INTO Likes SET? ", {user_id:id, collection_id:collection_id}, function(error,rows,field){
+			if(error){
+				res.status(400).json({});
+				console.log("Error after instering");
+				return;
+			}
+				res.status(200).json({});
+		});
 });
 /*
 app.get("/unlike", function(req, res){
